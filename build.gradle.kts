@@ -15,6 +15,12 @@ dependencies {
 //    compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
     implementation("commons-httpclient", "commons-httpclient", "3.1")
 
+    // 引入一个spring框架
+    // compile group: 'org.springframework', name: 'spring-core', version: '5.2.4.RELEASE'
+    implementation("org.springframework", "spring-core", "4.3.9.RELEASE") {
+        // 排除这个库的某个依赖
+        exclude("commons-logging", "commons-logging")
+    }
 }
 
 repositories {
@@ -61,4 +67,9 @@ task("getsrcname") {
             }
         }
     }
+}
+
+// 拓展函数
+task("delete", Delete::class) {
+    setDelete("src/temp")
 }
